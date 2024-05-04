@@ -2,6 +2,8 @@ from typing import List, Optional, Union
 from pydantic import BaseModel, field_validator
 from datetime import datetime
 
+from ..swagger.book_response import book_response_example, list_book_response_example
+
 
 class BookBase(BaseModel):
     title: str
@@ -40,7 +42,12 @@ class Response(BaseModel):
     message: str
     book: Union[BookResponse, None] = None
 
+    model_config = {"json_schema_extra": {"examples": book_response_example}}
+
+
 class ListResponse(BaseModel):
     success: bool
     message: str
-    books: List[BookResponse] = []
+    books: List[BookResponse]
+
+    model_config = {"json_schema_extra": {"examples": list_book_response_example}}
