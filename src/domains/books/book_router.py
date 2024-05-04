@@ -20,12 +20,11 @@ router = APIRouter(prefix="/books", tags=["Books"])
     response_model=ListResponse,
     status_code=status.HTTP_200_OK,
     summary="Returns a list of all books in the bookstore.",
-    # responses=
 )
 async def list_books(db: Session = Depends(get_db)):
     books = book_service.get_books(db)
     book_responses = [book.to_dict() for book in books]
-    
+
     return ListResponse(
         success=True,
         message="Books retrieved successfully",
