@@ -39,4 +39,8 @@ class Response(BaseModel):
     success: bool
     message: str
     book: Union[BookResponse, None] = None
-    books: Union[List[BookResponse], None] = None
+
+class ListResponse(BaseModel):
+    success: bool
+    message: str
+    books: List[BookResponse] = []
