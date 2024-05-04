@@ -38,6 +38,12 @@ git clone https://github.com/sudodeo/bookstore.git
 cd bookstore
 ```
 
+- Setup environment variables.
+
+```bash
+cp .env.example .env
+```
+
 ### Manual
 
 - Create a virtual environment and activate it. (Optional)
@@ -63,12 +69,14 @@ uvicorn src.main:app --reload
 
 ### Docker
 
+- Make sure you have Docker installed on your machine.
+
 - Build and run the Docker image.
 
 ```bash
 make docker-start # if you have make installed
 # or
-docker build -t bookstore . && docker run -p 8000:8000 bookstore
+docker build -t bookstore . && docker run -p 8000:8000 --network="host" --env-file .env bookstore-api
 ```
 
 - Open your browser and navigate to `http://localhost:8000/docs` to see the API documentation.
