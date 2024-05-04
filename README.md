@@ -76,7 +76,7 @@ uvicorn src.main:app --reload
 ```bash
 make docker-start # if you have make installed
 # or
-docker build -t bookstore . && docker run -p 8000:8000 --network="host" --env-file .env bookstore-api
+docker build -t bookstore-api . && docker run -p 8000:8000 --network="host" --env-file .env bookstore-api
 ```
 
 - Open your browser and navigate to `http://localhost:8000/docs` to see the API documentation.
