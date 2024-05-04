@@ -23,10 +23,16 @@ def get_book(db: Session, book_id: int) -> models.Book:
 
 
 def update_book(db: Session, book_id: int, payload: UpdateBook) -> models.Book:
-    book = db.query(models.Book).filter(models.Book.id == book_id).first()
+    book_query = db.query(models.Book).filter(models.Book.id == book_id)
+    book = book_query.first()
+    if not book:
+        return None
 
-    for key, value in payload.dict().items():
-        setattr(book, key, value)
+    updated_book = payload.model_dump(exclude_unset=True)
+    if not updated_book:
+        return book
+
+    book_query.update(updated_book)
 
     db.commit()
     db.refresh(book)

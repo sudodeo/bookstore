@@ -25,10 +25,10 @@ class CreateBook(BookBase):
 
 
 class UpdateBook(BookBase):
-    title: Optional[str]
-    author: Optional[str]
-    year: Optional[int]
-    isbn: Optional[str]
+    title: Optional[str] = None
+    author: Optional[str] = None
+    year: Optional[int] = None
+    isbn: Optional[str] = None
 
 
 class BookResponse(BookBase):
