@@ -25,7 +25,7 @@ router = APIRouter(prefix="/books", tags=["Books"])
 async def list_books(db: Session = Depends(get_db)):
     books = book_service.get_books(db)
     book_responses = [book.to_dict() for book in books]
-    print(book_responses)
+    
     return ListResponse(
         success=True,
         message="Books retrieved successfully",
