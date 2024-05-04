@@ -17,7 +17,7 @@ docker-build:
 	docker build -t bookstore-api .
 
 docker-run:
-	docker run -d -p 8000:8000 bookstore-api
+	docker run -p 8000:8000 --network="host" --env-file .env bookstore-api
 
 docker-stop:
 	docker stop $$(docker ps -a -q)
